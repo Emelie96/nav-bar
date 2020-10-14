@@ -1,0 +1,145 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  color: rosybrown;
+}
+
+header {
+  background-color: beige;
+  text-align: center;
+  position: fixed;
+  z-index: 999; /*this is to ensure that it always stays at the top*/
+  width: 100%;
+}
+
+.akai {
+  width: 50px;
+  height: 50px;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background-color: beige;
+  width: 100%;
+  /* display: none;  this is so that the */
+  transform: scale(
+    1,
+    0
+  ); /* this is used instead of display to allow transitions*/
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav a {
+  text-decoration: none;
+  color: #356839;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 100ms ease-in-out;
+}
+
+nav a:hover {
+  color: #dd3c3c;
+}
+
+.nav-toggle {
+  display: none; /*removes the checkbox and now uses the span*/
+}
+
+.nav-toggle:checked ~ nav {
+  /* display: block; */
+  transform: scale(
+    1,
+    1
+  ); /* this is used instead of display to allow transitions*/
+}
+
+.hamburger-menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hamburger-menu span,
+.hamburger-menu span::before,
+.hamburger-menu span::after {
+  display: block;
+  background: #356839;
+  width: 1.5em;
+  height: 2px;
+  border-radius: 2px;
+  position: relative;
+}
+
+.hamburger-menu span::before,
+.hamburger-menu span::after {
+  content: "";
+  position: absolute;
+}
+
+.hamburger-menu span::before {
+  bottom: 7px;
+}
+.hamburger-menu span::after {
+  top: 7.5px;
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media (min-width: 800px) {
+  .hamburger-menu {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  nav {
+    all: unset;
+    display: flex;
+    align-items: center;
+  }
+
+  nav a {
+    opacity: 1;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+}
